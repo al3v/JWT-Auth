@@ -140,6 +140,28 @@ $ npm i express
 $ npm i --save-dev nodemon dotenv
 ```
 
+### Step 3: Install Additional Modules
+
+1. Install the `bcrypt` and `jsonwebtoken` modules:
+
+```bash
+$ npm i bcrypt jsonwebtoken
+```
+
+### Step 4: Create the `.env` File
+
+1. Install the `bcrypt` and `jsonwebtoken` modules:
+
+```bash
+$ cat > .env
+PORT = 5000
+ACCESS_TOKEN_SECRET = 3e9af42de397cfc9387a06972c28ca13ac7e9a60fb6d1f05295bc6057baf500672d4a13db5d04ea84bbc4c5679164a7723fd49f51b7d3dc3dfe3b76c8e
+REFRESH_TOKEN_SECRET = 56ad615ad7d2ee09e48096e5d4d156f647433b1afad162311c45aa520697b65d13a5c72891f6145abf267588c61240d2f80b3d681eb462
+TOKEN_SERVER_PORT = 4000
+```
+- CTRL+D to save and exit
+
+
 
 
 
