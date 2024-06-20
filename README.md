@@ -239,5 +239,49 @@ $ node authServer.js
 
 
 
+### Step 8: Registering a User via Postman
+
+1. **Start the `authServer.js` Program:**
+   - Ensure your `authServer.js` program is running. You should see a message indicating that the Authorization Server is running on the specified port.
+  
+![image](https://github.com/al3v/JWT-Auth/assets/73062283/efb62806-a253-419b-9811-22a22b8537d6)
+
+
+2. **Use Postman to Register a User:**
+   - Open Postman, a popular tool for testing APIs.
+   - Set up a POST request to the following URL:
+     ```plaintext
+     http://localhost:4000/createUser
+     ```
+
+3. **Send JSON Data in the Request Body:**
+   - In Postman, under the "Body" tab, select "raw" and choose "JSON" from the dropdown menu.
+   - Enter the following JSON data, which includes the user's name and password:
+     ```json
+     {
+       "name": "Levy",
+       "password": "password"
+     }
+     ```
+
+4. **Send the Request:**
+   - Click the "Send" button to send the request to the server.
+  
+   ![image](https://github.com/al3v/JWT-Auth/assets/73062283/378e7408-03ae-44e6-8823-5fd2fca36882)
+
+
+5. **Server Response:**
+   - The server will respond with a JSON object that includes the username and the hashed version of the password. The original password is hashed using bcrypt and stored in the users array.
+   - Example response:
+     ```json
+     {
+        "user": "levy",
+        "password": "$2b$10$PqFArfTcHxUvDDHLwzYOce/L9PMsofqi2C.Vm5XXFMpCz1BUko7Fe"
+     }
+     ```
+
+
+
+
 
 
