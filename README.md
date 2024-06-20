@@ -229,6 +229,13 @@ app.post('/createUser', async (req, res) => {
 ```bash
 $ node authServer.js
 ```
+- require('dotenv').config();: Loads environment variables from the .env file.
+- bcrypt: Library for hashing passwords, ensuring they are not stored in plain text.
+- users: Array to store registered users. In real applications, a database should be used.
+- express: Framework to create the server and handle routes.
+- app.use(express.json());: Middleware to parse JSON bodies in incoming requests.
+- app.listen(port, () => {...}): Starts the server on the specified port.
+- app.post('/createUser', async (req, res) => {...}): Route to register a new user. It hashes the user's password and stores the user in the users array.
 
 
 
