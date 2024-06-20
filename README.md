@@ -151,6 +151,7 @@ $ npm i bcrypt jsonwebtoken
 ### Step 4: Create the `.env` File
 
 1. Install the `bcrypt` and `jsonwebtoken` modules:
+- `.env:` This file contains environment variables such as the server port and secret keys for token encryption. 
 
 ```bash
 $ cat > .env
