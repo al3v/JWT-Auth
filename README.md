@@ -130,6 +130,15 @@ $ mkdir jwt-practice
 $ cd jwt-practice/
 $ npm init -y
 ```
+### Step 2: Install Required Modules
+
+1. Install the `express` module and `nodemon` and `dotenv` as development dependencies:
+
+```bash
+$ npm i express
+$ npm i --save-dev nodemon dotenv
+```
+
 
 
 
