@@ -418,5 +418,24 @@ To log into the system, follow these steps:
 By following these steps, you can log into the system securely, receiving tokens that allow you to access protected resources and refresh your session without needing to log in again frequently. This enhances both security and user experience.
 
 
+### Step 13: How the System Works
+
+1. **Token Expiration:**
+   - When we log in, the access token (`accessToken`) provided to us is valid for 15 minutes. After this 15-minute period, we may receive a "401 Unauthorized" error.
+
+2. **Refreshing the Token:**
+   - Upon receiving a "401 Unauthorized" error, we should immediately use the refresh token to obtain a new access token and refresh token. This can be done by sending a request to the `/refreshToken` endpoint.
+
+3. **Time Window for Refreshing the Token:**
+   - If we do not refresh the token within 20 minutes, we may need to call the `/login` endpoint again to generate a new access token. It is important to refresh the token before the refresh token itself expires.
+
+4. **Security Considerations:**
+   - If unauthorized individuals gain access to our access token, they can use it for 15 minutes before it expires. Therefore, reducing the expiration time can increase security. Adjusting the expiration times based on security requirements can help protect the system from unauthorized access.
+
+### Summary
+
+By understanding how token expiration and refreshing work, you can ensure continuous and secure access to the system. Handling token expiration properly is crucial for maintaining session security and preventing unauthorized access. Implementing these measures helps create a robust authentication system that balances user convenience with strong security practices.
+
+
 
 
