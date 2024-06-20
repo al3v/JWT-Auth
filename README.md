@@ -162,6 +162,11 @@ TOKEN_SERVER_PORT = 4000
 ```
 - CTRL+D to save and exit
 
+- ACCESS_TOKEN_SECRET: The secret key used to create the access token. It is crucial for this key to be unique and randomly generated.
+- REFRESH_TOKEN_SECRET: The secret key used to create the refresh token.
+- PORT: The port number for the authentication server.
+- TOKEN_SERVER_PORT: The port number for the token validation server.
+
 ### Step 5: How the System Works
 
 1. **Creating a User:**
@@ -172,6 +177,15 @@ TOKEN_SERVER_PORT = 4000
    - Next, we will log in to the authentication server using the `/login` method.
    - We will provide the username and password. The authentication server will hash the provided password and compare it with the stored hashed password.
    - If the hashed passwords match, the server will issue an access token and a refresh token. These tokens are created using the secrets stored in the `.env` file.
+
+
+### Step 6: Configuration for Authentication and Token Validation Servers
+
+1. **Servers Setup:**
+   - We will have two servers: `authServer.js` (for authentication) and `validateToken.js` (for token validation). Both servers will use the same secrets stored in the `.env` file.
+   - If these servers run as microservices, it's crucial to have the same `.env` file in each microservice container. This ensures consistent token validation across services.
+   - **Security Note:** The `.env` file contains sensitive information and should be treated as a secret.
+
 
 
 
