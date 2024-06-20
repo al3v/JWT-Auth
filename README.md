@@ -114,8 +114,10 @@ By following these steps, any server with the same `ACCESS_TOKEN_SECRET` can val
 - **Security:** JWT provides a secure way to authenticate clients accessing the API.
 - **Scalability:** Using the same secret key across multiple servers allows for easy token validation.
 - **Simplicity:** This example simplifies user data storage, but real applications should use a database.
+- **Technologies Used:** We will use the Express server in Node.js, along with the bcrypt and jsonwebtoken modules.
 
-This example helps us understand how to implement JWT authentication in a Node.js REST API application, making it accessible only to authenticated users.
+This example helps understand how to implement JWT authentication in a Node.js REST API application, making it accessible only to authenticated users.
+
 
 
 
