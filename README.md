@@ -81,3 +81,42 @@ Authentication is the process by which a system or application verifies the iden
 
 This fundamental information helps in understanding the importance of authentication and the advantages of different methods.
 
+# Example: REST API and JWT Authentication
+
+## Overview
+
+In this example, we will secure a REST API application created with Node.js using the JWT (JSON Web Tokens) method.
+
+## Key Points
+
+- **Objective:** Demonstrate how to secure REST API applications so that only authenticated clients can access them.
+- **Simplified Storage:** Usernames and hashed passwords will be stored in an array. In real applications, this information should be stored in a database. This is simplified for this example.
+- **Technologies Used:** Node.js with the Express server, bcrypt for hashing passwords, and jsonwebtoken for creating and verifying tokens.
+
+## How the System Works
+
+- **Authentication and API Servers:** We will assume we have two servers: one for authentication and one for providing the API. Even though they will run on the same server, they will operate on different ports to separate authentication and API functions.
+- **Token Verification:** Both servers will use the same `ACCESS_TOKEN_SECRET` value to sign and verify tokens.
+
+## Detailed Steps
+
+1. **Authentication Server:**
+   - Receives `user` and `password` values.
+   - Signs the token with `ACCESS_TOKEN_SECRET`.
+
+2. **API Server:**
+   - Verifies the token using the same `ACCESS_TOKEN_SECRET`.
+
+By following these steps, any server with the same `ACCESS_TOKEN_SECRET` can validate the JWT token.
+
+## Summary
+
+- **Security:** JWT provides a secure way to authenticate clients accessing the API.
+- **Scalability:** Using the same secret key across multiple servers allows for easy token validation.
+- **Simplicity:** This example simplifies user data storage, but real applications should use a database.
+
+This example helps us understand how to implement JWT authentication in a Node.js REST API application, making it accessible only to authenticated users.
+
+
+
+
