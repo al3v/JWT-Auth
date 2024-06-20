@@ -118,6 +118,18 @@ By following these steps, any server with the same `ACCESS_TOKEN_SECRET` can val
 
 This example helps understand how to implement JWT authentication in a Node.js REST API application, making it accessible only to authenticated users.
 
+## Practice: JWT Authentication with Node.js
+
+### Step 1: Create Project Directory and Initialize
+
+1. Create a directory for your project and navigate into it.
+2. Initialize a new Node.js project using `npm init -y`.
+
+```bash
+$ mkdir jwt-practice
+$ cd jwt-practice/
+$ npm init -y
+```
 
 
 
