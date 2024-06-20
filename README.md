@@ -162,6 +162,17 @@ TOKEN_SERVER_PORT = 4000
 ```
 - CTRL+D to save and exit
 
+### Step 5: How the System Works
+
+1. **Creating a User:**
+   - We will create a user using the `/createUser` method. Normally, users would be stored in a database, but for simplicity, we will store them on the authentication server.
+   - The authentication server will not store passwords in plain text. Instead, it will hash the passwords before storing them. It will then return the username and the hashed password.
+
+2. **User Login:**
+   - Next, we will log in to the authentication server using the `/login` method.
+   - We will provide the username and password. The authentication server will hash the provided password and compare it with the stored hashed password.
+   - If the hashed passwords match, the server will issue an access token and a refresh token. These tokens are created using the secrets stored in the `.env` file.
+
 
 
 
