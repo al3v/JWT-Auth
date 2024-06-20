@@ -187,6 +187,48 @@ TOKEN_SERVER_PORT = 4000
    - **Security Note:** The `.env` file contains sensitive information and should be treated as a secret.
 
 
+### Step 7: Creating the Authentication Server
+
+1. **Create `authServer.js`:**
+   - This file will handle user registration and login. It is crucial as it sets up the main logic for authenticating users and issuing JWT tokens.
+
+2. **Importance:**
+   - This step is important because it initializes the server that will manage user authentication, hash passwords, and generate secure tokens for verified users.
+
+3. **Create `authServer.js` in the same directory and Add the Following Code:**
+```bash
+$ touch authServer.js
+```
+
+```javascript
+require('dotenv').config(); // Load environment variables from .env file
+const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
+const users = []; // Array to store users
+
+const express = require('express'); // Import express for server creation
+const app = express();
+
+app.use(express.json()); // Middleware to parse JSON bodies
+
+const port = process.env.TOKEN_SERVER_PORT; // Get the port number from .env file
+
+app.listen(port, () => {
+    console.log(`Authorization Server running on ${port}...`);
+});
+
+// REGISTER A USER
+app.post('/createUser', async (req, res) => {
+    const user = req.body.name;
+    const hashedPassword = await bcrypt.hash(req.body.password, 10); // Hash the password
+    users.push({ name: user, password: hashedPassword }); // Store the user
+    res.status(201).send({ name: user, password: hashedPassword });
+    console.log(users);
+});
+```
+- Save the file and run the server using the following command:
+```bash
+$ node authServer.js
+```
 
 
 
