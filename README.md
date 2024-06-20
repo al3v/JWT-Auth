@@ -272,6 +272,8 @@ $ node authServer.js
 
 5. **Server Response:**
    - The server will respond with a JSON object that includes the username and the hashed version of the password. The original password is hashed using bcrypt and stored in the users array.
+   - This hashed password is what the server will use for future authentication requests to verify the user's identity.
+   - Instead of storing the plain password we sent, the hashed version will be stored in the `users` array inside `authServer.js`. All verification will be performed using the hashed version of the password.
    - Example response:
      ```json
      {
