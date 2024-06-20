@@ -133,6 +133,7 @@ $ npm init -y
 ### Step 2: Install Required Modules
 
 1. Install the `express` module and `nodemon` and `dotenv` as development dependencies:
+- dotenv: This module allows you to load environment variables from a .env file into
 
 ```bash
 $ npm i express
