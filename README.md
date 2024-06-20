@@ -284,6 +284,49 @@ $ node authServer.js
 
 
 
+### Step 9: Adding Login Functionality
+
+This update allows us to authenticate users using their hashed passwords. By sending a login request with a username and password, the server verifies the credentials, and if valid, responds with JWT tokens. These tokens are then used for authenticated requests to the server.
+
+1. **Update `authServer.js`:**
+   - Add the following code snippet to the end of your `authServer.js` file. This will allow us to log in using the hashed password.
+
+2. **Code to Add:**
+
+```javascript
+const jwt = require("jsonwebtoken");
+
+// AUTHENTICATE LOGIN AND RETURN JWT TOKEN
+app.post("/login", async (req, res) => {
+    const user = users.find(c => c.user === req.body.name);
+    // Check to see if the user exists in the list of registered users
+
+    if (user == null) {
+        return res.status(404).send("User does not exist!");
+    }
+    // If user does not exist, send a 404 response
+
+    if (await bcrypt.compare(req.body.password, user.password)) {
+        const accessToken = generateAccessToken({ user: req.body.name });
+        const refreshToken = generateRefreshToken({ user: req.body.name });
+        return res.json({ accessToken: accessToken, refreshToken: refreshToken });
+    } else {
+        return res.status(401).send("Password Incorrect!");
+    }
+});
+
+// Helper functions to generate tokens
+function generateAccessToken(user) {
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+}
+
+function generateRefreshToken(user) {
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+}
+```
+
+
+
 
 
 
