@@ -325,7 +325,46 @@ function generateRefreshToken(user) {
 }
 ```
 
+### Step 10: Adding Token Generation Functions
 
+1. **Update `authServer.js`:**
+   - Add the following code snippet to the end of your `authServer.js` file. This part of the code allows us to generate and refresh our JWT tokens.
+
+2. **Code to Add:**
+These functions are essential for managing JWT tokens. The generateAccessToken function creates a short-lived token for secure access, while the generateRefreshToken function creates a slightly longer-lived token that can be used to obtain a new access token when the original expires. This mechanism helps maintain security while ensuring that users can continue their sessions without frequent logins.
+
+```javascript
+// accessTokens
+function generateAccessToken(user) {
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "15m" });
+}
+
+// refreshTokens
+let refreshTokens = [];
+
+function generateRefreshToken(user) {
+    const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "20m" });
+    refreshTokens.push(refreshToken);
+    return refreshToken;
+}
+```
+
+
+### Step 11: Adding Logout Functionality
+Logging out is an essential security measure. It ensures that once a user finishes their session, their tokens cannot be reused to gain unauthorized access. After logging out, the tokens are invalidated, preventing them from being refreshed or reused. This helps to protect the system and user data from potential misuse or unauthorized access.
+
+1. **Update `authServer.js`:**
+   - Add the following code snippet to the end of your `authServer.js` file. This part of the code will allow users to log out by removing their refresh token.
+
+2. **Code to Add:**
+
+```javascript
+app.delete("/logout", (req, res) => {
+    refreshTokens = refreshTokens.filter(c => c !== req.body.token);
+    // Remove the old refreshToken from the refreshTokens list
+    res.status(204).send("Logged out!");
+});
+```
 
 
 
