@@ -366,6 +366,57 @@ app.delete("/logout", (req, res) => {
 });
 ```
 
+### Step 12: Logging into the System
+
+To log into the system, follow these steps:
+
+1. **Send a JSON Object to the Login Endpoint:**
+   - We will send a JSON object containing the `name` and `password` fields to the following endpoint:
+     ```plaintext
+     http://localhost:4000/login
+     ```
+![image](https://github.com/al3v/JWT-Auth/assets/73062283/20889568-460f-42b5-b061-b269ce410d34)
+
+2. **Example JSON Data:**
+   - The JSON object should look like this:
+     ```json
+     {
+       "name": "levy",
+       "password": "password"
+     }
+     ```
+
+3. **Process:**
+   - The server will receive the username and plain text password.
+   - It will then hash the provided password and compare it with the stored hashed password.
+   - If the hashed passwords match, the server will generate and return an `accessToken` and a `refreshToken`.
+
+4. **Response:**
+   - The server will respond with a JSON object containing the `accessToken` and `refreshToken`:
+     ```json
+     {
+       "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiSGFrYW4iLCJpYXQiOjE3MTE0NzQ0ODQsImV4cCI6MTc0MDA4NDQ4MC.ZR6vOoYp7EvUZO_ucMHrRVIJYNTv1OtzEqzQ7OCxn3ANC",
+       "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiSGFrYW4iLCJpYXQiOjE3MTE0NzQ0ODQsImV4cCI6MTc0MDA4NTQ0MC.MDp4NfO6_A1ta4DGKzrYGEfvFWM_OciatGE1Xb2MEa5a9uOHCMg"
+     }
+     ```
+
+### Explanation of the Process
+
+1. **Login Request:**
+   - We send our username and password in plain text to the login endpoint. The server receives this data and processes it.
+
+2. **Password Handling:**
+   - The server hashes the provided password and compares it with the stored hashed password. This ensures that even if the transmission is intercepted, the passwords remain secure.
+
+3. **Token Generation:**
+   - If the passwords match, the server generates an `accessToken` that is valid for 15 minutes and a `refreshToken` that is valid for 20 minutes.
+   - The `accessToken` is used for accessing protected resources, while the `refreshToken` is used to obtain a new `accessToken` when the original expires.
+
+4. **Response:**
+   - The server responds with the `accessToken` and `refreshToken` in a JSON object. The `accessToken` should be used without the quotation marks for subsequent authenticated requests.
+
+By following these steps, you can log into the system securely, receiving tokens that allow you to access protected resources and refresh your session without needing to log in again frequently. This enhances both security and user experience.
+
 
 
 
