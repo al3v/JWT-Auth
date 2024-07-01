@@ -436,6 +436,19 @@ By following these steps, you can log into the system securely, receiving tokens
 
 By understanding how token expiration and refreshing work, you can ensure continuous and secure access to the system. Handling token expiration properly is crucial for maintaining session security and preventing unauthorized access. Implementing these measures helps create a robust authentication system that balances user convenience with strong security practices.
 
+----------------------------------
+
+
+
+
+### Example: Service Code
+
+- **Up to this point**, we have set up the necessary services for authentication and provided verification operations through our server listening on port 4000.
+- **From now on**, what we need to do is write the service code that will find the token and verify its validity. Other API microservices can now use the token without sending the username and password.
+- `validateToken.js` will operate as a separate microservice, examining the tokens and authorizing the user. It will then allow access to the provided service. This will be done without contacting the authentication server, enabling Single Sign-On (SSO).
+- **Critical data** will be stored in the `.env` file. Since the data in this file is used by both the authentication server and the API services, once the token is created, there is no need for services to access each other's information.
+- **IN THIS WAY, THE AUTHENTICATION SERVER'S JOB ENDS AFTER THE TOKEN IS CREATED. API SERVICES ONLY USE THIS CREATED TOKEN.**
+
 
 
 
